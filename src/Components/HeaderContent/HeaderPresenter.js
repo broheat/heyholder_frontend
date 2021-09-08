@@ -44,9 +44,7 @@ export default ({
   return (
     <Menu secondary style={menuStyle}>
       <Container>
-        <Menu.Item header onClick={() => <Link to={`/board/${code}`}></Link>}>
-          {stockname}
-        </Menu.Item>
+        <Menu.Item header>{stockname}</Menu.Item>
         <Menu.Item header>
           총 보유 주식 수 :{" "}
           {totalAmountData.totalamount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 주

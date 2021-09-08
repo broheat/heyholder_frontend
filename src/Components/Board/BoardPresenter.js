@@ -50,17 +50,23 @@ export default ({
           {!postLoading &&
             postData &&
             postData.allpost &&
-            postData.allpost.map((post, index) => (
-              <Table.Row key={index} onClick={() => onRowClick(post.id, code)}>
-                <Table.Cell>{post.id}</Table.Cell>
-                <Table.Cell>{post.title}</Table.Cell>
-                <Table.Cell>{post.user.username}</Table.Cell>
-                <Table.Cell>{post.amount}</Table.Cell>
-                <Table.Cell>{post.createdAt}</Table.Cell>
-                <Table.Cell>조회수</Table.Cell>
-                <Table.Cell>추천</Table.Cell>
-              </Table.Row>
-            ))}
+            postData.allpost
+              .slice(0)
+              .reverse()
+              .map((post, index) => (
+                <Table.Row
+                  key={index}
+                  onClick={() => onRowClick(post.id, code)}
+                >
+                  <Table.Cell>{post.id}</Table.Cell>
+                  <Table.Cell>{post.title}</Table.Cell>
+                  <Table.Cell>{post.user.username}</Table.Cell>
+                  <Table.Cell>{post.amount}</Table.Cell>
+                  <Table.Cell>{post.createdAt}</Table.Cell>
+                  <Table.Cell>조회수</Table.Cell>
+                  <Table.Cell>추천</Table.Cell>
+                </Table.Row>
+              ))}
         </Table.Body>
       </Table>
     </Container>
