@@ -1,6 +1,3 @@
-import { useEffect } from "react";
-import { useQuery } from "@apollo/client";
-import { useHistory } from "react-router-dom";
 import {
   Table,
   Container,
@@ -10,26 +7,17 @@ import {
   Image,
 } from "semantic-ui-react";
 import HeaderContent from "../HeaderContent";
-import { allPost, haveStock } from "./BoardQuery";
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default ({ code }) => {
-  const history = useHistory();
-  const { data, loading } = useQuery(haveStock, { variables: { code } });
-
-  const onRowClick = (id, code) => {
-    history.push(`/article/${code}/${id}`);
-  };
-
-  useEffect(() => {
-    if (data && !data.havestock) history.push("/");
-  }, [data, history]);
-
-  const { data: postData, loading: postLoading } = useQuery(allPost, {
-    variables: { code },
-  });
-
-  if (postLoading || loading) {
+export default ({
+  code,
+  postData,
+  postLoading,
+  haveStockData,
+  haveStockLoading,
+  onRowClick,
+}) => {
+  if (postLoading || haveStockLoading) {
     return (
       <Segment>
         <Dimmer active>
@@ -42,7 +30,10 @@ export default ({ code }) => {
   }
   return (
     <Container>
-      <HeaderContent code={code} stockname={data.havestock.stockname} />
+      <HeaderContent
+        code={code}
+        stockname={haveStockData.havestock.stockname}
+      />
       <Table singleLine>
         <Table.Header>
           <Table.Row>

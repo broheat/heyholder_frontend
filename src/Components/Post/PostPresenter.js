@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { useHistory } from "react-router";
 import {
   Container,
   Form,
@@ -8,31 +6,20 @@ import {
   Loader,
   Image,
 } from "semantic-ui-react";
-import { haveStock } from "./PostQuery";
-import { useQuery } from "@apollo/client";
 import HeaderContent from "../HeaderContent";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default ({
   code,
-  data,
   onSubmit,
   title,
   setTitle,
   setContents,
   contents,
+  loading,
+  data,
 }) => {
-  const history = useHistory();
-  const { data: haveStockData, loading: haveStockLoading } = useQuery(
-    haveStock,
-    { variables: { code } }
-  );
-
-  useEffect(() => {
-    if (data && !data.code) history.push("/");
-  }, [data]);
-
-  if (haveStockLoading) {
+  if (loading) {
     return (
       <Segment>
         <Dimmer active>
@@ -46,10 +33,7 @@ export default ({
 
   return (
     <Container>
-      <HeaderContent
-        code={code}
-        stockname={haveStockData.havestock.stockname}
-      />
+      <HeaderContent code={code} stockname={data.havestock.stockname} />
       <Form onSubmit={onSubmit}>
         <Form.Group>
           <Form.Field

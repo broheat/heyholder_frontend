@@ -8,10 +8,7 @@ import {
   Dimmer,
   Image,
 } from "semantic-ui-react";
-import { allStock, totalAmount } from "./HeaderQuery";
-import { useEffect } from "react";
-import { useQuery } from "@apollo/client";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const menuStyle = {
   border: "none",
@@ -23,24 +20,16 @@ const menuStyle = {
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default ({ code, stockname }) => {
-  const { data, loading } = useQuery(allStock);
-  const { data: totalAmountData, loading: totalAmountLoading } = useQuery(
-    totalAmount,
-    { variables: { code } }
-  );
-
-  const history = useHistory();
-
-  const onClick = (code) => {
-    history.push(`/post/${code}`);
-  };
-
-  useEffect(() => {
-    if (data && !data.allstock) history.push("/getAccount");
-  }, [data]);
-
-  if (totalAmountLoading || loading) {
+export default ({
+  code,
+  stockname,
+  totalAmountLoading,
+  allStockLoading,
+  totalAmountData,
+  onClick,
+  allStockData,
+}) => {
+  if (totalAmountLoading || allStockLoading) {
     return (
       <Segment>
         <Dimmer active>
@@ -55,7 +44,7 @@ export default ({ code, stockname }) => {
   return (
     <Menu secondary style={menuStyle}>
       <Container>
-        <Menu.Item header onClick={() => history.push(`/stock/${code}`)}>
+        <Menu.Item header onClick={() => <Link to={`/board/${code}`}></Link>}>
           {stockname}
         </Menu.Item>
         <Menu.Item header>
@@ -68,11 +57,11 @@ export default ({ code, stockname }) => {
         </Menu.Item>
         <Dropdown item simple text="나의 회사">
           <Dropdown.Menu>
-            {!loading &&
-              data &&
-              data.allstock &&
-              data.allstock.map((stock, index) => (
-                <Link key={index} to={`/stock/${stock.code}`}>
+            {!allStockLoading &&
+              allStockData &&
+              allStockData.allstock &&
+              allStockData.allstock.map((stock, index) => (
+                <Link key={index} to={`/board/${stock.code}`}>
                   <Dropdown.Item text={stock.stockname} />
                 </Link>
               ))}

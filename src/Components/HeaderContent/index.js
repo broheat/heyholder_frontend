@@ -1,3 +1,2 @@
-import HeaderPresenter from "./HeaderPresenter";
-
-export default HeaderPresenter;
+import HeaderContainer from "./HeaderContainer";
+export default HeaderContainer;

@@ -58,7 +58,7 @@ export default () => {
                 data &&
                 data.allstock &&
                 data.allstock.map((stock, index) => (
-                  <Link key={index} to={`/stock/${stock.code}`}>
+                  <Link key={index} to={`/board/${stock.code}`}>
                     <Dropdown.Item text={stock.stockname} />
                   </Link>
                 ))}

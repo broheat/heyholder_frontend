@@ -1,11 +1,10 @@
-import { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { useHistory } from "react-router";
+import { useState, useEffect } from "react";
+import { useMutation, useQuery } from "@apollo/client";
+import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import PostPresenter from "./PostPresenter";
-import { CREATE_POST } from "./PostQuery";
+import { CREATE_POST, haveStock } from "./PostQuery";
 import _ from "lodash";
-import { allPost } from "../Board/BoardQuery";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default ({
@@ -15,20 +14,18 @@ export default ({
 }) => {
   const [contents, setContents] = useState("");
   const [title, setTitle] = useState("");
-  const [creatPostMutation, { loading, error }] = useMutation(CREATE_POST, {
+  const [creatPostMutation] = useMutation(CREATE_POST, {
     variables: { code: code, contents: contents, title: title },
-    update(cache, { data: { creatPostMutation } }) {
-      const { postData } = cache.readQuery({
-        query: allPost,
-        variables: { code },
-      });
-      cache.writeQuery({
-        query: allPost,
-        data: { postData: [...postData, creatPostMutation] },
-      });
-    },
   });
+  const { data: haveStockData, loading: haveStockLoading } = useQuery(
+    haveStock,
+    { variables: { code } }
+  );
   const history = useHistory();
+
+  useEffect(() => {
+    if (haveStockData && !haveStockData.havestock) history.push("/");
+  }, [haveStockData, history]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -55,6 +52,8 @@ export default ({
       setContents={setContents}
       setTitle={setTitle}
       onSubmit={onSubmit}
+      loading={haveStockLoading}
+      data={haveStockData}
     ></PostPresenter>
   );
 };
