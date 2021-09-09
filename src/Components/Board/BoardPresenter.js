@@ -32,7 +32,7 @@ export default ({
     <Container>
       <HeaderContent
         code={code}
-        stockname={haveStockData.havestock.stockname}
+        stockname={haveStockData.havestock?.stockname}
       />
       <Table singleLine>
         <Table.Header>

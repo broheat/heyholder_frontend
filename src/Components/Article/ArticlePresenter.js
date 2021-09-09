@@ -36,21 +36,21 @@ export default ({
     <Container>
       <HeaderContent
         code={code}
-        stockname={haveStockData.havestock.stockname}
+        stockname={haveStockData.havestock?.stockname}
       />
 
       <Grid style={{ background: "#333" }}>
         <Grid.Row>
           <Grid.Column>
             <Header as="h1" inverted>
-              {getPostData.getpost.title}
+              {getPostData.getpost?.title}
             </Header>
           </Grid.Column>
         </Grid.Row>
       </Grid>
 
       <Grid.Row style={{ margin: "60px" }}>
-        <Grid.Column width={16}>{getPostData.getpost.contents}</Grid.Column>
+        <Grid.Column width={16}>{getPostData.getpost?.contents}</Grid.Column>
       </Grid.Row>
       <Divider />
 

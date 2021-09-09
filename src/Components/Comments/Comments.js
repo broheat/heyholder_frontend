@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { getPost } from "./CommentsQuery";
+import { GET_POST } from "./CommentsQuery";
 import {
   Loader,
   Segment,
@@ -13,8 +13,9 @@ import NewComment from "./NewComment";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default ({ id }) => {
-  const { data: getPostData, loading: getPostLoading } = useQuery(getPost, {
+  const { data: getPostData, loading: getPostLoading } = useQuery(GET_POST, {
     variables: { id },
+    fetchPolicy: "network-only",
   });
 
   if (getPostLoading) {

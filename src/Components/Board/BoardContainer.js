@@ -10,24 +10,27 @@ export default ({
     params: { code },
   },
 }) => {
-  const history = useHistory();
   const { data: haveStockData, loading: haveStockLoading } = useQuery(
     haveStock,
     { variables: { code } }
   );
+  const { data: postData, loading: postLoading } = useQuery(allPost, {
+    variables: { code },
+    fetchPolicy: "network-only",
+  });
+
+  const history = useHistory();
+
+  useEffect(() => {
+    if (haveStockData && !haveStockData.havestock) {
+      history.push("/home");
+    }
+  }, [haveStockData, history]);
 
   const onRowClick = (id, code) => {
     history.push(`/article/${code}/${id}`);
   };
 
-  useEffect(() => {
-    if (haveStockData && !haveStockData.havestock) history.push("/");
-  }, [haveStockData, history]);
-
-  const { data: postData, loading: postLoading } = useQuery(allPost, {
-    variables: { code },
-    fetchPolicy: "network-only",
-  });
   return (
     <BoardPresenter
       code={code}

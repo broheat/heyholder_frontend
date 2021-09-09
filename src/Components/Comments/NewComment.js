@@ -1,4 +1,4 @@
-import { createComment, getPost } from "./CommentsQuery";
+import { CREATE_COMMENT, GET_POST } from "./CommentsQuery";
 import { Form } from "semantic-ui-react";
 import { useMutation } from "@apollo/client";
 import _ from "lodash";
@@ -7,32 +7,28 @@ import { toast } from "react-toastify";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default ({ article }) => {
-  const [contents, setContents] = useState("");
-
-  const [addCommentMutation] = useMutation(createComment, {
-    update: (cache, { data }) => {
-      if (!_.isEmpty(data.createComment.errors)) return;
-
-      const cacheData = cache.readQuery({
-        query: getPost,
+  const [comment, setComment] = useState("");
+  const [createComment, { loading }] = useMutation(CREATE_COMMENT, {
+    update(cache, { data: { createComment } }) {
+      const { getpost } = cache.readQuery({
+        query: GET_POST,
         variables: { id: article.getpost.id },
       });
-
-      cacheData.getpost.commentSet.unshift(data.createComment.comment);
       cache.writeQuery({
-        query: getPost,
+        query: GET_POST,
         variables: { id: article.getpost.id },
-        data: cacheData,
+        data: { getpost: [...getpost, createComment] },
       });
     },
   });
 
   const onSubmit = async (e) => {
-    if (contents !== "") {
+    if (comment !== "") {
       try {
-        const { data } = await addCommentMutation({
-          variables: { id: article.getpost.id, contents: contents },
+        const { data } = await createComment({
+          variables: { id: article.getpost.id, contents: comment },
         });
+        setComment("");
 
         if (!_.isEmpty(data.createComment.errors)) return;
       } catch (e) {
@@ -44,8 +40,15 @@ export default ({ article }) => {
   };
 
   return (
-    <Form onSubmit={onSubmit} style={{ marginBottom: "50px" }}>
-      <Form.TextArea onChange={(e) => setContents(e.target.value)} />
+    <Form
+      onSubmit={onSubmit}
+      style={{ marginBottom: "50px" }}
+      disabled={loading}
+    >
+      <Form.TextArea
+        onChange={(e) => setComment(e.target.value)}
+        placeholder="new comment"
+      />
       <Form.Button
         floated="right"
         content="등록"
