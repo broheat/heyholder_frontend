@@ -19,6 +19,6 @@ export const allStock = gql`
 
 export const totalAmount = gql`
   query totalamount($code: String!) {
-    totalamount(code: $code)
+    totalAmount(code: $code)
   }
 `;
