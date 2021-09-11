@@ -33,7 +33,7 @@ export default ({
 
   return (
     <Container>
-      <HeaderContent code={code} stockname={data.havestock.stockname} />
+      <HeaderContent code={code} data={data} />
       <Form onSubmit={onSubmit}>
         <Form.Group>
           <Form.Field

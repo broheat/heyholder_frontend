@@ -30,17 +30,15 @@ export default ({
   }
   return (
     <Container>
-      <HeaderContent state={"board"} code={code} data={haveStockData} />
+      <HeaderContent state={"research"} code={code} data={haveStockData} />
       <Table singleLine>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>번호</Table.HeaderCell>
             <Table.HeaderCell width={10}>제목</Table.HeaderCell>
-            <Table.HeaderCell>글쓴이</Table.HeaderCell>
-            <Table.HeaderCell>보유 수량</Table.HeaderCell>
+            <Table.HeaderCell>애널리스트</Table.HeaderCell>
+            <Table.HeaderCell>증권사</Table.HeaderCell>
             <Table.HeaderCell>등록일</Table.HeaderCell>
-            <Table.HeaderCell>조회수</Table.HeaderCell>
-            <Table.HeaderCell>추천</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>

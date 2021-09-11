@@ -34,10 +34,7 @@ export default ({
 
   return (
     <Container>
-      <HeaderContent
-        code={code}
-        stockname={haveStockData.havestock?.stockname}
-      />
+      <HeaderContent code={code} data={haveStockData} />
 
       <Grid style={{ background: "#333" }}>
         <Grid.Row>

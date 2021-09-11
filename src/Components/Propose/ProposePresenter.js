@@ -30,7 +30,7 @@ export default ({
   }
   return (
     <Container>
-      <HeaderContent state={"board"} code={code} data={haveStockData} />
+      <HeaderContent state={"propose"} code={code} data={haveStockData} />
       <Table singleLine>
         <Table.Header>
           <Table.Row>
