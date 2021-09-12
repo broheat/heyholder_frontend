@@ -1,5 +1,6 @@
 import {
   Table,
+  Message,
   Container,
   Loader,
   Segment,
@@ -11,13 +12,13 @@ import HeaderContent from "../HeaderContent";
 // eslint-disable-next-line import/no-anonymous-default-export
 export default ({
   code,
-  postData,
-  postLoading,
+  researchData,
+  researchLoading,
   haveStockData,
   haveStockLoading,
   onRowClick,
 }) => {
-  if (postLoading || haveStockLoading) {
+  if (researchLoading || haveStockLoading) {
     return (
       <Segment>
         <Dimmer active>
@@ -31,35 +32,40 @@ export default ({
   return (
     <Container>
       <HeaderContent state={"research"} code={code} data={haveStockData} />
+      <Message
+        header="알려드립니다!"
+        content="리서치 자료는 제공 되지 않고, 링크 주소만 제공 됩니다."
+      />
+
       <Table singleLine>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>번호</Table.HeaderCell>
-            <Table.HeaderCell width={10}>제목</Table.HeaderCell>
+            <Table.HeaderCell width={6}>제목</Table.HeaderCell>
             <Table.HeaderCell>애널리스트</Table.HeaderCell>
             <Table.HeaderCell>증권사</Table.HeaderCell>
             <Table.HeaderCell>등록일</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {!postLoading &&
-            postData &&
-            postData.allpost &&
-            postData.allpost
+          {!researchLoading &&
+            researchData &&
+            researchData.allResearch &&
+            researchData.allResearch
               .slice(0)
               .reverse()
-              .map((post, index) => (
+              .map((research, index) => (
                 <Table.Row
                   key={index}
-                  onClick={() => onRowClick(post.id, code)}
+                  onClick={() => {
+                    window.open(`${research.link}`);
+                  }}
                 >
-                  <Table.Cell>{post.id}</Table.Cell>
-                  <Table.Cell>{post.title}</Table.Cell>
-                  <Table.Cell>{post.user.username}</Table.Cell>
-                  <Table.Cell>{post.amount}</Table.Cell>
-                  <Table.Cell>{post.createdAt}</Table.Cell>
-                  <Table.Cell>조회수</Table.Cell>
-                  <Table.Cell>추천</Table.Cell>
+                  <Table.Cell>{research.id}</Table.Cell>
+                  <Table.Cell>{research.title}</Table.Cell>
+                  <Table.Cell>{research.writer}</Table.Cell>
+                  <Table.Cell>{research.company}</Table.Cell>
+                  <Table.Cell>{research.day}</Table.Cell>
                 </Table.Row>
               ))}
         </Table.Body>

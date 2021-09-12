@@ -8,17 +8,16 @@ export const haveStock = gql`
   }
 `;
 
-export const allPost = gql`
-  query allpost($code: String!) {
-    allpost(code: $code) {
+export const allResearch = gql`
+  query allresearch($code: String!) {
+    allResearch(code: $code) {
       id
-      contents
+      code
       title
-      createdAt
-      amount
-      user {
-        username
-      }
+      writer
+      link
+      day
+      company
     }
   }
 `;

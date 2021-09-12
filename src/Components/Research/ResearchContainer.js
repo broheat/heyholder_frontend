@@ -2,7 +2,7 @@ import ResearchPresenter from "./ResearchPresenter";
 import { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
-import { allPost, haveStock } from "./ResearchQuery";
+import { allResearch, haveStock } from "./ResearchQuery";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default ({
@@ -14,10 +14,12 @@ export default ({
     haveStock,
     { variables: { code } }
   );
-  const { data: postData, loading: postLoading } = useQuery(allPost, {
-    variables: { code },
-    fetchPolicy: "network-only",
-  });
+  const { data: researchData, loading: researchLoading } = useQuery(
+    allResearch,
+    {
+      variables: { code },
+    }
+  );
 
   const history = useHistory();
 
@@ -27,18 +29,13 @@ export default ({
     }
   }, [haveStockData, history]);
 
-  const onRowClick = (id, code) => {
-    history.push(`/article/${code}/${id}`);
-  };
-
   return (
     <ResearchPresenter
       code={code}
       haveStockData={haveStockData}
       haveStockLoading={haveStockLoading}
-      postLoading={postLoading}
-      postData={postData}
-      onRowClick={onRowClick}
+      researchLoading={researchLoading}
+      researchData={researchData}
     />
   );
 };
