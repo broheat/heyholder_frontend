@@ -18,6 +18,7 @@ export const allResearch = gql`
       link
       day
       company
+      documentid
     }
   }
 `;

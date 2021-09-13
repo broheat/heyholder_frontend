@@ -16,8 +16,17 @@ export default ({
   researchLoading,
   haveStockData,
   haveStockLoading,
-  onRowClick,
 }) => {
+  const goKB = (id, url) => {
+    document.forms[0].sDocumentid.value = id;
+    document.forms[0].sUrlLink.value = url;
+    const form = document.forms[0];
+    form.action = "https://www.kbsec.com/go.able?linkcd=s040203010000";
+    form.method = "POST";
+    form.target = "_blank";
+    form.submit();
+  };
+
   if (researchLoading || haveStockLoading) {
     return (
       <Segment>
@@ -58,7 +67,11 @@ export default ({
                 <Table.Row
                   key={index}
                   onClick={() => {
-                    window.open(`${research.link}`);
+                    if (research.company === "미래에셋대우") {
+                      window.open(`${research.link}`);
+                    } else if (research.company === "KB증권") {
+                      goKB(research.documentid, research.link);
+                    }
                   }}
                 >
                   <Table.Cell>{research.id}</Table.Cell>
@@ -70,6 +83,10 @@ export default ({
               ))}
         </Table.Body>
       </Table>
+      <form name="frm" action>
+        <input type="hidden" name="sDocumentid" value />
+        <input type="hidden" name="sUrlLink" value />
+      </form>
     </Container>
   );
 };
