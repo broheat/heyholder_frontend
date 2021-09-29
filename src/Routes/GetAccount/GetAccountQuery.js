@@ -22,7 +22,7 @@ export const whoAmI = gql`
   {
     whoami {
       agree1
-      username
+      nickname
     }
   }
 `;

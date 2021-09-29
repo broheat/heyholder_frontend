@@ -8,6 +8,7 @@ import { Loader, Segment, Dimmer, Image } from "semantic-ui-react";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
+  const [agree, setAgree] = useState(false);
   const [companyId, setCompanyId] = useState("");
   const [companySecret, setCompanySecret] = useState("");
   const [open, setOpen] = useState(false);
@@ -19,7 +20,6 @@ export default () => {
     },
   });
   const { data, loading } = useQuery(whoAmI);
-
   const onSubmit = async (e) => {
     e.preventDefault();
     if (companyId !== "" && companySecret !== "") {
@@ -44,10 +44,12 @@ export default () => {
       </Segment>
     );
   }
+  const agreeResult = data.whoami.agree1 || agree;
+  console.log(agreeResult);
 
   return (
     <Fragment>
-      {data.whoami.agree1 ? (
+      {agreeResult ? (
         <GetAccountPresenter
           companyId={companyId}
           setCompanyId={setCompanyId}
@@ -58,7 +60,7 @@ export default () => {
           setOpen={setOpen}
         />
       ) : (
-        <Policy />
+        <Policy setAgree={setAgree} />
       )}
     </Fragment>
   );

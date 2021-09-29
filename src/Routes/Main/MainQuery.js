@@ -17,7 +17,7 @@ export const allPost = gql`
       createdAt
       amount
       user {
-        username
+        nickname
       }
     }
   }

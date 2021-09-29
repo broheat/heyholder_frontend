@@ -11,16 +11,16 @@ export default (props) => {
           type="text"
           label="닉네임"
           control="input"
-          value={props.userName}
-          onChange={(e) => props.setUserName(e.target.value)}
+          value={props.nickName}
+          onChange={(e) => props.setNickName(e.target.value)}
         ></Form.Field>
         <h3>개인 금융 정보 제공에 동의 하시겠습니까?</h3>
-        {props.userName ? (
-          <Button onClick={props.onClick} content="동의"></Button>
+        {props.nickName ? (
+          <Button onClick={props.agreeClick} content="동의"></Button>
         ) : (
           <Button disabled content="동의"></Button>
         )}
-        <Button onClick={props.logOut} content="비동의"></Button>
+        <Button onClick={props.disagreeClick} content="비동의"></Button>
       </Form>
     </Container>
   );

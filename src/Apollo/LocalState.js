@@ -11,7 +11,7 @@ export const resolvers = {
       isLoggedInVar(true);
       return null;
     },
-    logUserOut: (_, __, { cache }) => {
+    logUserOut: (_, __) => {
       localStorage.removeItem("token");
       window.location = "/";
       return null;

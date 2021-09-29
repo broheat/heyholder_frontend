@@ -22,7 +22,6 @@ export default ({
     { variables: { code } }
   );
   const history = useHistory();
-  console.log(haveStockData);
 
   useEffect(() => {
     if (haveStockData && !haveStockData.havestock) history.push("/");

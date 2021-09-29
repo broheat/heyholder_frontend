@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const Agree = gql`
-  mutation agree($agree1: Boolean!, $username: String!) {
-    agree(agree1: $agree1, username: $username) {
+  mutation agree($agree1: Boolean!, $nickname: String!) {
+    agree(agree1: $agree1, nickname: $nickname) {
       user {
         agree1
       }

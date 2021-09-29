@@ -57,7 +57,7 @@ export default ({
                 >
                   <Table.Cell>{post.id}</Table.Cell>
                   <Table.Cell>{post.title}</Table.Cell>
-                  <Table.Cell>{post.user.username}</Table.Cell>
+                  <Table.Cell>{post.user.nickname}</Table.Cell>
                   <Table.Cell>{post.amount}</Table.Cell>
                   <Table.Cell>{post.createdAt}</Table.Cell>
                   <Table.Cell>조회수</Table.Cell>
