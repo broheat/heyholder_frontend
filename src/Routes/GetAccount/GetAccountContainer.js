@@ -1,8 +1,10 @@
-import { useMutation } from "@apollo/client";
-import { getAccount } from "./GetAccountQuery";
+import { useMutation, useQuery } from "@apollo/client";
+import { getAccount, whoAmI } from "./GetAccountQuery";
 import { toast } from "react-toastify";
-import AddStockPresenter from "./GetAccountPresenter";
-import { useState } from "react";
+import GetAccountPresenter from "./GetAccountPresenter";
+import { useState, Fragment } from "react";
+import Policy from "../../Components/Policy";
+import { Loader, Segment, Dimmer, Image } from "semantic-ui-react";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
@@ -16,6 +18,7 @@ export default () => {
       company: 1,
     },
   });
+  const { data, loading } = useQuery(whoAmI);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -30,16 +33,33 @@ export default () => {
     }
     setOpen(false);
   };
+  if (loading) {
+    return (
+      <Segment>
+        <Dimmer active>
+          <Loader />
+        </Dimmer>
+
+        <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
+      </Segment>
+    );
+  }
 
   return (
-    <AddStockPresenter
-      companyId={companyId}
-      setCompanyId={setCompanyId}
-      companySecret={companySecret}
-      setCompanySecret={setCompanySecret}
-      onSubmit={onSubmit}
-      open={open}
-      setOpen={setOpen}
-    ></AddStockPresenter>
+    <Fragment>
+      {data.whoami.agree1 ? (
+        <GetAccountPresenter
+          companyId={companyId}
+          setCompanyId={setCompanyId}
+          companySecret={companySecret}
+          setCompanySecret={setCompanySecret}
+          onSubmit={onSubmit}
+          open={open}
+          setOpen={setOpen}
+        />
+      ) : (
+        <Policy />
+      )}
+    </Fragment>
   );
 };

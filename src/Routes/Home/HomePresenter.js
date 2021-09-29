@@ -7,11 +7,7 @@ import {
   Dimmer,
   Image,
 } from "semantic-ui-react";
-import { allStock } from "./HomeQuery";
-import { useEffect } from "react";
-import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 
 const menuStyle = {
   border: "none",
@@ -23,19 +19,8 @@ const menuStyle = {
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default () => {
-  const { data, loading } = useQuery(allStock, {
-    fetchPolicy: "network-only",
-  });
-  const history = useHistory();
-
-  useEffect(() => {
-    if (data && data.allstock.length === 0) {
-      history.push(`/getAccount`);
-    }
-  }, [data, history]);
-
-  if (loading) {
+export default (props) => {
+  if (props.loading) {
     return (
       <Segment>
         <Dimmer active>
@@ -54,10 +39,10 @@ export default () => {
         <Menu.Menu position="right">
           <Dropdown item simple text="나의 회사">
             <Dropdown.Menu>
-              {!loading &&
-                data &&
-                data.allstock &&
-                data.allstock.map((stock, index) => (
+              {!props.loading &&
+                props.data &&
+                props.data.allstock &&
+                props.data.allstock.map((stock, index) => (
                   <Link key={index} to={`/board/${stock.code}`}>
                     <Dropdown.Item text={stock.stockname} />
                   </Link>

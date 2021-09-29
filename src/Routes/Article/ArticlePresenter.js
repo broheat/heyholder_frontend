@@ -8,8 +8,8 @@ import {
   Header,
   Divider,
 } from "semantic-ui-react";
-import HeaderContent from "../HeaderContent";
-import Comments from "../Comments";
+import HeaderContent from "../../Components/HeaderContent";
+import Comments from "../../Components/Comments";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default ({

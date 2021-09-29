@@ -3,16 +3,15 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import Auth from "../Routes/Auth";
 import GetAccount from "../Routes/GetAccount";
 import Home from "../Routes/Home";
-import Post from "../Components/Post";
-import Board from "../Components/Board";
-import Research from "../Components/Research";
-import Propose from "../Components/Propose";
-import Main from "../Components/Main";
-import Article from "../Components/Article";
+import Post from "../Routes/Post";
+import Board from "../Routes/Board";
+import Research from "../Routes/Research";
+import Propose from "../Routes/Propose";
+import Main from "../Routes/Main";
+import Article from "../Routes/Article";
 
 const LoggedInRoutes = () => (
   <Switch>
-    <Route path="/home" component={Home} />
     <Route path="/post/:code" component={Post} />
     <Route path="/research/:code" component={Research} />
     <Route path="/propose/:code" component={Propose} />

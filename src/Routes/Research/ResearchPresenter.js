@@ -7,7 +7,7 @@ import {
   Dimmer,
   Image,
 } from "semantic-ui-react";
-import HeaderContent from "../HeaderContent";
+import HeaderContent from "../../Components/HeaderContent";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default ({

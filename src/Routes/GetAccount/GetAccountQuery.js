@@ -1,4 +1,4 @@
-import { gql } from "apollo-boost";
+import { gql } from "@apollo/client";
 
 export const getAccount = gql`
   mutation getAccount(
@@ -14,6 +14,15 @@ export const getAccount = gql`
       account {
         id
       }
+    }
+  }
+`;
+
+export const whoAmI = gql`
+  {
+    whoami {
+      agree1
+      username
     }
   }
 `;

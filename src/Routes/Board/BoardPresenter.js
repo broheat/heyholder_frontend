@@ -6,7 +6,7 @@ import {
   Dimmer,
   Image,
 } from "semantic-ui-react";
-import HeaderContent from "../HeaderContent";
+import HeaderContent from "../../Components/HeaderContent";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default ({
@@ -30,7 +30,7 @@ export default ({
   }
   return (
     <Container>
-      <HeaderContent state={"main"} code={code} data={haveStockData} />
+      <HeaderContent state={"board"} code={code} data={haveStockData} />
       <Table singleLine>
         <Table.Header>
           <Table.Row>

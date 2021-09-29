@@ -1,4 +1,4 @@
-import { gql } from "apollo-boost";
+import { gql } from "@apollo/client";
 
 export const KAKAO_LOGIN = gql`
   mutation SocialAuth($provider: String!, $accessToken: String!) {
@@ -10,14 +10,6 @@ export const KAKAO_LOGIN = gql`
         id
       }
       token
-    }
-  }
-`;
-export const whoAmI = gql`
-  {
-    whoami {
-      username
-      agree_1
     }
   }
 `;

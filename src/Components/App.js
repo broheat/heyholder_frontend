@@ -1,23 +1,15 @@
 import GlobalStyles from "../Styles/GlobalStyles";
-import { gql } from "apollo-boost";
+import { useReactiveVar } from "@apollo/client";
 import AppRouter from "./Routes";
-import { useQuery } from "@apollo/client";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import Theme from "../Styles/Theme";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const QUERY = gql`
-  {
-    isLoggedIn @client
-  }
-`;
+import { isLoggedInVar } from "../Apollo/LocalState";
 
 function App() {
-  const {
-    data: { isLoggedIn },
-  } = useQuery(QUERY);
+  const isLoggedIn = useReactiveVar(isLoggedInVar);
 
   return (
     <ThemeProvider theme={Theme}>
