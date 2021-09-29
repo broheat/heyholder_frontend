@@ -1,2 +1,1 @@
 # Dajuju web client
-https://securities.miraeasset.com/bbs/board/message/view.do?messageId=2283143&messageNumber=539&messageCategoryId=0&startId=zzzzz~&startPage=1&curPage=2&searchType=2&searchText=&searchStartYear=2020&searchStartMonth=09&searchStartDay=10&searchEndYear=2021&searchEndMonth=09&searchEndDay=10&lastPageFlag=&vf_headerTitle=&categoryId=1545
