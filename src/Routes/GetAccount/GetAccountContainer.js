@@ -5,6 +5,7 @@ import GetAccountPresenter from "./GetAccountPresenter";
 import { useState, Fragment } from "react";
 import Policy from "../../Components/Policy";
 import { Loader, Segment, Dimmer, Image } from "semantic-ui-react";
+import { Container } from "react-bootstrap";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
@@ -45,10 +46,9 @@ export default () => {
     );
   }
   const agreeResult = data.whoami.agree1 || agree;
-  console.log(agreeResult);
 
   return (
-    <Fragment>
+    <Container fluid className="px-lg-4 px-xl-5">
       {agreeResult ? (
         <GetAccountPresenter
           companyId={companyId}
@@ -62,6 +62,6 @@ export default () => {
       ) : (
         <Policy setAgree={setAgree} />
       )}
-    </Fragment>
+    </Container>
   );
 };

@@ -1,41 +1,35 @@
-import {
-  Table,
-  Container,
-  Loader,
-  Segment,
-  Dimmer,
-  Image,
-} from "semantic-ui-react";
+import { Table } from "semantic-ui-react";
+import { Card, Col, Container, Row } from "react-bootstrap";
+
 import HeaderContent from "../../Components/HeaderContent";
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default ({
-  code,
-  postData,
-  postLoading,
-  haveStockData,
-  haveStockLoading,
-  onRowClick,
-}) => {
-  if (postLoading || haveStockLoading) {
+export default (props) => {
+  if (props.postLoading || props.haveStockLoading) {
     return (
-      <Segment>
-        <Dimmer active>
-          <Loader />
-        </Dimmer>
-
-        <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
-      </Segment>
+      <Container fluid className="px-lg-4 px-xl-5">
+        <Row className="h-100">
+          <Col md={3} className="mb-4">
+            <Card className="h-100">
+              <Card.Body className="d-flex justify-content-center pt-5 pb-5"></Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     );
   }
   return (
-    <Container>
-      <HeaderContent state={"board"} code={code} data={haveStockData} />
+    <Container fluid className="px-lg-4 px-xl-5">
+      <HeaderContent
+        state={"board"}
+        code={props.code}
+        data={props.haveStockData}
+      />
       <Table singleLine>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>번호</Table.HeaderCell>
-            <Table.HeaderCell width={10}>제목</Table.HeaderCell>
+            <Table.HeaderCell width={8}>제목</Table.HeaderCell>
             <Table.HeaderCell>글쓴이</Table.HeaderCell>
             <Table.HeaderCell>보유 수량</Table.HeaderCell>
             <Table.HeaderCell>등록일</Table.HeaderCell>
@@ -44,16 +38,16 @@ export default ({
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {!postLoading &&
-            postData &&
-            postData.allpost &&
-            postData.allpost
+          {!props.postLoading &&
+            props.postData &&
+            props.postData.allpost &&
+            props.postData.allpost
               .slice(0)
               .reverse()
               .map((post, index) => (
                 <Table.Row
                   key={index}
-                  onClick={() => onRowClick(post.id, code)}
+                  onClick={() => props.onRowClick(post.id, props.code)}
                 >
                   <Table.Cell>{post.id}</Table.Cell>
                   <Table.Cell>{post.title}</Table.Cell>

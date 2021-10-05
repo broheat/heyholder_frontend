@@ -1,94 +1,58 @@
+import { Button, Col, Container, Form, Row, Image } from "react-bootstrap";
 import styled from "styled-components";
-import { Helmet } from "react-helmet";
-import { Button, Image } from "semantic-ui-react";
-import { Body, Wrapper, Content, Article } from "../../Styles/Wrapper";
+
+const KakaoLogin = styled(Button)`
+  background-color: #fee500;
+  border-color: #fee500;
+  color: #181600;
+`;
 
 // eslint-disable-next-line import/no-anonymous-default-export
-const AuthHead = styled.div`
-  max-width: 520px;
-  text-align: center;
-  margin: 0 auto;
-`;
-
-const Logo = styled.h1`
-  display: inline-block;
-  width: 109px;
-  height: 27px;
-  margin: 0 auto;
-  line-height: 1;
-  vertical-align: top;
-  background: url(/assets/weblogin/techin/ico_account-4038b4e….png);
-`;
-
-const String = styled.span`
-  display: block;
-  overflow: hidden;
-  position: relative;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-`;
-
-const AccountIntro = styled.div`
-  margin-top: 30px;
-  display: block;
-`;
-
-const Title = styled.h2`
-  padding-top: 10px;
-  font-size: 24px;
-  display: block;
-  color: #252525;
-  font-weight: normal;
-  text-align: center;
-`;
-
-const AuthImage = styled.img`
-  display: block;
-  max-width: 100%;
-  margin: 30px auto 0;
-  padding-bottom: 20px;
-`;
-// eslint-disable-next-line import/no-anonymous-default-export
-export default ({ onClick }) => {
+export default (props) => {
   return (
-    <Body>
-      <Wrapper>
-        <Helmet>
-          <title>Log In | For 주주</title>
-        </Helmet>
-        <AuthHead>
-          <Logo>
-            <String>For 주주</String>
-          </Logo>
-        </AuthHead>
-        <Content>
-          <Article>
-            <AccountIntro>
-              <Title>주주들의 힘을 모읍시다.</Title>
-              <AuthImage src="https://t1.daumcdn.net/cfile/tistory/99C47F335D49951514"></AuthImage>
-              <Button
-                style={{ marginBottom: 10, backgroundColor: "#FEE500" }}
-                size="large"
-                fluid
-                onClick={onClick}
-              >
-                <Image
-                  style={{
-                    height: 22,
-                    width: 22,
-                    marginRight: 20,
-                    color: "black",
-                  }}
-                  src="https://t1.daumcdn.net/cfile/tistory/992DA6415B743DB62B"
-                  avatar
-                />
-                <span style={{ fontSize: 15 }}>카카오톡으로 시작하기</span>
-              </Button>
-            </AccountIntro>
-          </Article>
-        </Content>
-      </Wrapper>
-    </Body>
+    <Container fluid className="px-0">
+      <Row className="gx-0 min-vh-100">
+        <Col
+          md={9}
+          lg={6}
+          xl={4}
+          className="px-5 d-flex align-items-center shadow"
+        >
+          <div className="w-100 py-5">
+            <div className="text-center">
+              <img
+                className="img-fluid mb-4"
+                src="img/00-7.jpeg"
+                alt="..."
+                style={{ maxWidth: "6rem" }}
+              />
+              <h1 className="h4 text-uppercase mb-5">주주를 위하여</h1>
+            </div>
+            <Form method="get" action="/">
+              <div className="d-grid mb-5">
+                <KakaoLogin className="text-uppercase" onClick={props.onClick}>
+                  카카오로 시작하기
+                </KakaoLogin>
+              </div>
+            </Form>
+          </div>
+        </Col>
+        <Col md={3} lg={6} xl={8} className="d-none d-md-block">
+          <div className="bg-cover h-100 me-n3 position-relative">
+            <Image
+              style={{
+                maxWidth: "100%",
+                minWidth: "100%",
+                minHeight: "100%",
+                maxHeight: "100%",
+                width: "0px",
+                height: "0px",
+              }}
+              src="https://t1.daumcdn.net/cfile/tistory/99C47F335D49951514"
+            />
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };

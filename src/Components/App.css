@@ -1,0 +1,40 @@
+.page-holder {
+  display: flex;
+  overflow-x: hidden;
+  width: 100%;
+  min-height: calc(100vh - 72px);
+  flex-wrap: wrap;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+}
+.card-header {
+  position: relative;
+  padding: 2rem;
+  border-bottom: none;
+  background-color: #fff;
+  box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
+  z-index: 2;
+}
+.card-heading {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+h4 {
+  display: block;
+  margin-block-start: 1.33em;
+  margin-block-end: 1.33em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-size: calc(1.26rem + 0.12vw);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}

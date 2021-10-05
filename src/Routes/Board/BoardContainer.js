@@ -30,7 +30,7 @@ export default ({
   const onRowClick = (id, code) => {
     history.push(`/article/${code}/${id}`);
   };
-  console.log(postData);
+
   return (
     <BoardPresenter
       code={code}
