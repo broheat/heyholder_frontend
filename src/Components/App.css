@@ -1,9 +1,104 @@
+:root {
+  --spacer: #a00;
+}
+
 .page-holder {
   display: flex;
   overflow-x: hidden;
   width: 100%;
   min-height: calc(100vh - 72px);
+  padding-top: 3rem;
   flex-wrap: wrap;
+}
+
+.page-header {
+  margin-bottom: 3rem;
+}
+
+.page-heading {
+  font-weight: 300;
+  letter-spacing: 0.2em;
+}
+
+.page-breadcrumb {
+  margin-bottom: 2rem;
+}
+
+.navbar {
+  z-index: 4;
+}
+
+.navbar .navbar-brand {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transition: color 0.3s;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 768px) {
+  .navbar .navbar-brand {
+    position: static;
+    transform: none;
+  }
+}
+
+.nav-link-icon {
+  padding-top: 1.1rem;
+  padding-bottom: 1.1rem;
+}
+
+.nav-link-icon .notification-badge {
+  top: 1rem;
+}
+
+.nav-link-icon .notification-badge.notification-badge-number {
+  top: 0.6rem;
+}
+
+.input-group-navbar {
+  padding-top: 1.1rem;
+  padding-bottom: 1.1rem;
+}
+
+.input-group-navbar .form-control {
+  background: #e9ecef;
+  border: none;
+  box-shadow: none;
+  font-size: 0.7875rem;
+}
+
+.dropdown-menu-animated.dropdown-menu-end {
+  right: 0;
+  left: auto;
+}
+
+.dropdown-menu-animated {
+  position: absolute;
+  margin: 0;
+  animation-name: AnimateDropdown;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+  z-index: 1000;
+}
+
+.dropdown-menu-animated.show {
+  top: 100%;
+}
+
+.dropdown-menu-animated i {
+  display: inline-block;
+}
+
+.dropdown-menu-animated.dropdown-menu[data-popper-placement^="left"],
+.dropdown-menu-animated.dropdown-menu[data-popper-placement^="right"],
+.dropdown-menu-animated.dropdown-menu[data-popper-placement^="top"] {
+  top: auto !important;
+  animation: none !important;
+}
+
+.text-sm {
+  font-size: 0.7875rem;
 }
 
 .card {
@@ -26,6 +121,26 @@
   letter-spacing: 0.2em;
 }
 
+.card-table {
+  overflow: hidden;
+}
+.card-table .table-responsive {
+  margin-right: -1px;
+}
+.card-table .card-body {
+  padding: 0;
+}
+
+.card-table thead th {
+  padding-top: $spacer * 1.5;
+  padding-bottom: $spacer * 1.5;
+  letter-spacing: 0.1em;
+  color: $white;
+  border-bottom-width: 0;
+  background: $gray-800;
+  font-size: 13px;
+}
+
 h4 {
   display: block;
   margin-block-start: 1.33em;
@@ -37,4 +152,12 @@ h4 {
   margin-bottom: 0.5rem;
   font-weight: 700;
   line-height: 1.2;
+}
+@keyframes AnimateDropdown {
+  100% {
+    transform: translateY(0);
+  }
+  0% {
+    transform: translateY(10px);
+  }
 }

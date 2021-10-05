@@ -1,7 +1,4 @@
-import { Table } from "semantic-ui-react";
 import { Card, Col, Container, Row } from "react-bootstrap";
-
-import HeaderContent from "../../Components/HeaderContent";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {
@@ -19,47 +16,55 @@ export default (props) => {
     );
   }
   return (
-    <Container fluid className="px-lg-4 px-xl-5">
-      <HeaderContent
-        state={"board"}
-        code={props.code}
-        data={props.haveStockData}
-      />
-      <Table singleLine>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>번호</Table.HeaderCell>
-            <Table.HeaderCell width={8}>제목</Table.HeaderCell>
-            <Table.HeaderCell>글쓴이</Table.HeaderCell>
-            <Table.HeaderCell>보유 수량</Table.HeaderCell>
-            <Table.HeaderCell>등록일</Table.HeaderCell>
-            <Table.HeaderCell>조회수</Table.HeaderCell>
-            <Table.HeaderCell>추천</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {!props.postLoading &&
-            props.postData &&
-            props.postData.allpost &&
-            props.postData.allpost
-              .slice(0)
-              .reverse()
-              .map((post, index) => (
-                <Table.Row
-                  key={index}
-                  onClick={() => props.onRowClick(post.id, props.code)}
-                >
-                  <Table.Cell>{post.id}</Table.Cell>
-                  <Table.Cell>{post.title}</Table.Cell>
-                  <Table.Cell>{post.user.nickname}</Table.Cell>
-                  <Table.Cell>{post.amount}</Table.Cell>
-                  <Table.Cell>{post.createdAt}</Table.Cell>
-                  <Table.Cell>조회수</Table.Cell>
-                  <Table.Cell>추천</Table.Cell>
-                </Table.Row>
-              ))}
-        </Table.Body>
-      </Table>
-    </Container>
+    <div className="page-holder bg-gray-100">
+      <Container fluid className="px-lg-4 px-xl-5">
+        <div className="page-header d-flex justify-content between align-items-center">
+          <h1 className="page-heading">
+            {props.haveStockData.havestock.stockname}
+          </h1>
+        </div>
+        <section className="mb-5">
+          <Card className="card-table">
+            <div
+              className={`preload-wrapper ${
+                props.postLoading ? "" : "opacity-10"
+              }`}
+            >
+              <table className="table table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>글쓴이</th>
+                    <th>보유 수량</th>
+                    <th>등록일</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {!props.postLoading &&
+                    props.postData &&
+                    props.postData.allpost &&
+                    props.postData.allpost
+                      .slice(0)
+                      .reverse()
+                      .map((post, index) => (
+                        <tr
+                          key={index}
+                          onClick={() => props.onRowClick(post.id, props.code)}
+                        >
+                          <td>{post.id}</td>
+                          <td>{post.title}</td>
+                          <td>{post.user.nickname}</td>
+                          <td>{post.amount}</td>
+                          <td>{post.createdAt}</td>
+                        </tr>
+                      ))}
+                </tbody>
+              </table>
+            </div>
+          </Card>
+        </section>
+      </Container>
+    </div>
   );
 };

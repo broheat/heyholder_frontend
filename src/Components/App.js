@@ -2,23 +2,24 @@ import { useReactiveVar } from "@apollo/client";
 import AppRouter from "./Routes";
 import { BrowserRouter as Router } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { isLoggedInVar } from "../Apollo/LocalState";
+import HeaderContent from "../Components/HeaderContent";
 import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
 
-function App() {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default () => {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
 
   return (
-    <div className="d-flex align-items-stretch">
-      <div className="page-holder align-items-center bg-gray-100">
-        <Router>
+    <div>
+      <Router>
+        {isLoggedIn && <HeaderContent />}
+        <div className="d-flex align-items-stretch">
           <AppRouter isLoggedIn={isLoggedIn} />
-        </Router>
-        <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
-      </div>
+          <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
+        </div>
+      </Router>
     </div>
   );
-}
-
-export default App;
+};

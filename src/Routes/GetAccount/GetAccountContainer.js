@@ -48,20 +48,22 @@ export default () => {
   const agreeResult = data.whoami.agree1 || agree;
 
   return (
-    <Container fluid className="px-lg-4 px-xl-5">
-      {agreeResult ? (
-        <GetAccountPresenter
-          companyId={companyId}
-          setCompanyId={setCompanyId}
-          companySecret={companySecret}
-          setCompanySecret={setCompanySecret}
-          onSubmit={onSubmit}
-          open={open}
-          setOpen={setOpen}
-        />
-      ) : (
-        <Policy setAgree={setAgree} />
-      )}
-    </Container>
+    <div className="page-holder align-items-center bg-gray-100">
+      <Container fluid className="px-lg-4 px-xl-5">
+        {agreeResult ? (
+          <GetAccountPresenter
+            companyId={companyId}
+            setCompanyId={setCompanyId}
+            companySecret={companySecret}
+            setCompanySecret={setCompanySecret}
+            onSubmit={onSubmit}
+            open={open}
+            setOpen={setOpen}
+          />
+        ) : (
+          <Policy setAgree={setAgree} />
+        )}
+      </Container>
+    </div>
   );
 };
