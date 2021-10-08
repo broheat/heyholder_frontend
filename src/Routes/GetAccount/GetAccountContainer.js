@@ -2,9 +2,8 @@ import { useMutation, useQuery } from "@apollo/client";
 import { getAccount, whoAmI } from "./GetAccountQuery";
 import { toast } from "react-toastify";
 import GetAccountPresenter from "./GetAccountPresenter";
-import { useState, Fragment } from "react";
+import { useState } from "react";
 import Policy from "../../Components/Policy";
-import { Loader, Segment, Dimmer, Image } from "semantic-ui-react";
 import { Container } from "react-bootstrap";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -35,15 +34,7 @@ export default () => {
     setOpen(false);
   };
   if (loading) {
-    return (
-      <Segment>
-        <Dimmer active>
-          <Loader />
-        </Dimmer>
-
-        <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
-      </Segment>
-    );
+    return <Container></Container>;
   }
   const agreeResult = data.whoami.agree1 || agree;
 

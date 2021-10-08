@@ -23,7 +23,7 @@ export default (props) => {
               <div className="text-center">
                 <img
                   className="img-fluid mb-4"
-                  src="img/00-7.jpeg"
+                  src="img/IMG_1027.jpg"
                   alt="..."
                   style={{ maxWidth: "6rem" }}
                 />
@@ -52,7 +52,7 @@ export default (props) => {
                   width: "0px",
                   height: "0px",
                 }}
-                src="https://t1.daumcdn.net/cfile/tistory/99C47F335D49951514"
+                src="img/IMG_1026.gif"
               />
             </div>
           </Col>
