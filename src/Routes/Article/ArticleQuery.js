@@ -13,6 +13,7 @@ export const haveStock = gql`
   query havestock($code: String!) {
     havestock(code: $code) {
       stockname
+      amount
     }
   }
 `;

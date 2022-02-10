@@ -8,7 +8,7 @@ export const GET_POST = gql`
       contents
       commentSet {
         user {
-          username
+          nickname
         }
         contents
         createdAt

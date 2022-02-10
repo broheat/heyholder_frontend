@@ -40,22 +40,13 @@ export default ({ article }) => {
   };
 
   return (
-    <Form
-      onSubmit={onSubmit}
-      style={{ marginBottom: "50px" }}
-      disabled={loading}
-    >
+    <Form onSubmit={onSubmit} disabled={loading} className="comment-form">
       <Form.TextArea
         onChange={(e) => setComment(e.target.value)}
         placeholder="new comment"
+        className="form-textArea"
       />
-      <Form.Button
-        floated="right"
-        content="등록"
-        labelPosition="left"
-        icon="edit"
-        primary
-      />
+      <Form.Button content="등록" />
     </Form>
   );
 };

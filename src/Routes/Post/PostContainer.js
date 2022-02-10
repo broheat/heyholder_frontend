@@ -3,7 +3,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import PostPresenter from "./PostPresenter";
-import { CREATE_POST, haveStock } from "./PostQuery";
+import { CREATE_POST, HAVE_STOCK } from "./PostQuery";
 import _ from "lodash";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -18,7 +18,7 @@ export default ({
     variables: { code: code, contents: contents, title: title },
   });
   const { data: haveStockData, loading: haveStockLoading } = useQuery(
-    haveStock,
+    HAVE_STOCK,
     { variables: { code } }
   );
   const history = useHistory();

@@ -5,19 +5,18 @@ import {
   Dimmer,
   Loader,
   Image,
+  Input,
+  TextArea,
 } from "semantic-ui-react";
-import HeaderContent from "../../Components/HeaderContent";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default ({
-  code,
   onSubmit,
   title,
   setTitle,
   setContents,
   contents,
   loading,
-  data,
 }) => {
   if (loading) {
     return (
@@ -32,33 +31,24 @@ export default ({
   }
 
   return (
-    <Container>
-      <HeaderContent code={code} data={data} />
+    <Container className="post-container">
       <Form onSubmit={onSubmit}>
-        <Form.Group>
-          <Form.Field
-            width={16}
-            name="title"
-            type="text"
-            label="제목"
-            control="input"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          ></Form.Field>
-        </Form.Group>
-        <Form.Group>
-          <Form.Field
-            width={16}
-            name="contents"
-            type="textarea"
-            label="내용"
-            control="textarea"
-            rows="15"
-            value={contents}
-            onChange={(e) => setContents(e.target.value)}
-          ></Form.Field>
-        </Form.Group>
-        <Form.Button content="Submit" />
+        <Form.Field
+          control={Input}
+          value={title}
+          placeholder="제목"
+          onChange={(e) => setTitle(e.target.value)}
+        ></Form.Field>
+        <Form.Field
+          control={TextArea}
+          placeholder="내용"
+          rows="15"
+          value={contents}
+          onChange={(e) => setContents(e.target.value)}
+        >
+          <input placeholder="내용" />
+        </Form.Field>
+        <Form.Button content="등록" />
       </Form>
     </Container>
   );

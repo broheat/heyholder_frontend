@@ -1,4 +1,4 @@
-import { Button } from "semantic-ui-react";
+import { Button } from "react-bootstrap";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default ({ onClick }) => {

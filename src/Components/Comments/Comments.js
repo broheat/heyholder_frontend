@@ -31,7 +31,7 @@ export default ({ id }) => {
   }
   return (
     <Comment.Group>
-      <Header as="h3">댓글</Header>
+      <Header as="h6">댓글</Header>
       <NewComment article={getPostData} />
       {!getPostLoading &&
         getPostData &&
@@ -39,9 +39,9 @@ export default ({ id }) => {
         getPostData.getpost.commentSet.map((comment, index) => (
           <OldComment
             key={index}
-            username={comment.user.username}
-            createdAt={comment.createdAt}
+            username={comment.user.nickname}
             contents={comment.contents}
+            createdAt={comment.createdAt}
           />
         ))}
     </Comment.Group>

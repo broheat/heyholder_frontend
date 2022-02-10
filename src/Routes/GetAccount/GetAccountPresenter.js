@@ -1,11 +1,12 @@
 import { Helmet } from "react-helmet";
-import { Button, Modal, Form, Container } from "semantic-ui-react";
 import GetStock from "../GetStock";
+import { Formik, Form as FormikForm, Field } from "formik";
+import { Form, Button, Card, Col, Row, Modal } from "react-bootstrap";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {
   return (
-    <Container>
+    <Row className="justify-content-center">
       <Helmet>
         <title>Log In | For 주주</title>
       </Helmet>
@@ -45,6 +46,6 @@ export default (props) => {
         </Modal.Content>
       </Modal>
       <GetStock />
-    </Container>
+    </Row>
   );
 };

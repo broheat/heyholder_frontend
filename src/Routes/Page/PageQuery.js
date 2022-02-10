@@ -14,6 +14,7 @@ export const ALL_POST = gql`
       id
       code
       title
+      contents
       createdAt
       amount
       user {

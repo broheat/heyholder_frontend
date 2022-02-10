@@ -6,5 +6,9 @@ export default (props) => {
     return <Container></Container>;
   }
 
-  return <Container></Container>;
+  return (
+    <Container>
+      <h1>환영합니다.</h1>
+    </Container>
+  );
 };
