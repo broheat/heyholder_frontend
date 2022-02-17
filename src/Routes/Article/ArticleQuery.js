@@ -14,6 +14,28 @@ export const haveStock = gql`
     havestock(code: $code) {
       stockname
       amount
+      outstandingShare
+    }
+  }
+`;
+
+export const totalParticipant = gql`
+  query totalParticipant($id: ID!) {
+    totalParticipant(id: $id)
+  }
+`;
+export const participantShare = gql`
+  query participantShare($id: ID!) {
+    participantShare(id: $id)
+  }
+`;
+
+export const participatePropose = gql`
+  mutation participantPropose($id: ID!, $numberOfStock: Int!) {
+    participantPropose(id: $id, numberOfStock: $numberOfStock) {
+      participant {
+        id
+      }
     }
   }
 `;

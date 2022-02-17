@@ -25,10 +25,12 @@ export default ({
       history.push("/home");
     }
   }, [haveStockData, history]);
+
   const { data: postData, loading: postLoading } = useQuery(ALL_POST, {
     variables: { code },
     fetchPolicy: "network-only",
   });
+
   const onPostClick = (id, code) => {
     history.push(`/article/${code}/${id}`);
   };

@@ -185,6 +185,18 @@
   width: 100vw;
   height: 2rem;
   margin-left: 0.5rem;
+  position: relative;
+}
+.progress-bar {
+  z-index: 1;
+}
+.progress-bar-text {
+  position: absolute;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+  color: black;
+  font-size: 1.2rem;
 }
 .article-button {
   display: flex;

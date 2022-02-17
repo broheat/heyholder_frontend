@@ -9,7 +9,10 @@ export default (props) => {
         <Navbar.Brand className="fw-bold text-base" href="/">
           <span className="d-brand">대주주</span>
         </Navbar.Brand>
-        <Navbar.Brand className="fw-bold text-base" href={`/post/247540`}>
+        <Navbar.Brand
+          className="fw-bold text-base"
+          href={`/post/${props.code}`}
+        >
           <span className="d-brand">글쓰기</span>
         </Navbar.Brand>
         <div className="ms-auto d-flex align-items-center mb-0">
